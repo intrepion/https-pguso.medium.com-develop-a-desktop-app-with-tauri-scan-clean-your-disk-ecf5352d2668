@@ -10,6 +10,9 @@ import type { FileInfo } from "./types";
 export default function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
+  const [path, setPath] = useState('');
+  const [files, setFiles] = useState<FileInfo[]>([]);
+  const [loading, setLoading] = useState(false);
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
