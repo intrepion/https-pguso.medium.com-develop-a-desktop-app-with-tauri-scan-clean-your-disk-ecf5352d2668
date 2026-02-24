@@ -14,6 +14,20 @@ export default function App() {
   const [files, setFiles] = useState<FileInfo[]>([]);
   const [loading, setLoading] = useState(false);
 
+  async function handleScan() {
+    if (!path) return alert('Please enter a folder or disk path.');
+
+    setLoading(true);
+    try {
+      const scannedFiles = await invoke<FileInfo[]>('scan_folder', { path });
+      setFiles(scannedFiles);
+    } catch (err) {
+      alert(`Failed to scan folder: ${err}`);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
     setGreetMsg(await invoke("greet", { name }));
