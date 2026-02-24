@@ -47,37 +47,24 @@ export default function App() {
   }
 
   return (
-    <main className="container">
-      <h1>Welcome to Tauri + React</h1>
+    <main className="min-h-screen bg-zinc-900 text-zinc-100 p-6 font-sans">
+      <div className="max-w-5xl mx-auto space-y-6">
+        <header className="text-center">
+          <h1 className="text-3xl font-bold">🧹 CleanSweep</h1>
+          <p className="text-zinc-400 mt-2">Analyze and clean up disk space with a single click.</p>
+        </header>
 
-      <div className="row">
-        <a href="https://vite.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
+        <PathSelector
+          path={path}
+          setPath={setPath}
+          loading={loading}
+          onScan={handleScan}
         />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
+
+        <DiskUsageSummary files={files} />
+
+        <CleanupSuggestions files={files} onTrash={handleTrash} />
+      </div>
     </main>
   );
 }
