@@ -10,6 +10,9 @@ function App() {
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
     setGreetMsg(await invoke("greet", { name }));
+
+    //This line in React/TypeScript will call your Rust function.
+    invoke('my_custom_command');
   }
 
   return (
