@@ -28,6 +28,16 @@ export default function App() {
     }
   }
 
+  async function handleTrash(filePath: string) {
+    try {
+      await invoke('move_to_trash', { path: filePath });
+      alert(`Moved to Trash: ${filePath}`);
+      await handleScan(); // refresh list
+    } catch (err) {
+      alert(`Failed to move to trash: ${err}`);
+    }
+  }
+
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
     setGreetMsg(await invoke("greet", { name }));
