@@ -43,15 +43,11 @@ fn move_to_trash(path: String) -> Result<(), String> {
     delete(&pathbuf).map_err(|e| e.to_string())
 }
 
-#[tauri::command]
-fn my_custom_command() {
-    println!("Called from JS!");
-}
-
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![my_custom_command])
+        .plugin(tauri_plugin_opener::init())
+        .invoke_handler(tauri::generate_handler![move_to_trash, scan_folder])
         .run(tauri::generate_context!())
-        .expect("error running Tauri app");
+        .expect("error while running tauri application");
 }
