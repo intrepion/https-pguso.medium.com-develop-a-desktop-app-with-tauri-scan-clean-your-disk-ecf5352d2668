@@ -7,7 +7,7 @@ import DiskUsageSummary from "./components/DiskUsageSummary";
 import CleanupSuggestions from "./components/CleanupSuggestions";
 import type { FileInfo } from "./types";
 
-function App() {
+export default function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
 
