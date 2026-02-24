@@ -1,3 +1,14 @@
+use std::path::PathBuf;
+use trash::delete;
+use walkdir::WalkDir;s
+
+#[derive(serde::Serialize)]
+struct FileInfo {
+    pub path: String,
+    pub size: u64,
+    pub modified: String,
+}
+
 #[tauri::command]
 fn my_custom_command() {
     println!("Called from JS!");
