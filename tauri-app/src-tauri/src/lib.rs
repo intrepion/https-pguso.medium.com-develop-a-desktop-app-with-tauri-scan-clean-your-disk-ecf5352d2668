@@ -38,6 +38,12 @@ fn scan_folder(path: String) -> Result<Vec<FileInfo>, String> {
 }
 
 #[tauri::command]
+fn move_to_trash(path: String) -> Result<(), String> {
+    let pathbuf = PathBuf::from(path);
+    delete(&pathbuf).map_err(|e| e.to_string())
+}
+
+#[tauri::command]
 fn my_custom_command() {
     println!("Called from JS!");
 }
