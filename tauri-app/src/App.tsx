@@ -1,15 +1,11 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/core";
-import "./App.css";
 import PathSelector from "./components/PathSelector";
 import DiskUsageSummary from "./components/DiskUsageSummary";
 import CleanupSuggestions from "./components/CleanupSuggestions";
 import type { FileInfo } from "./types";
 
 export default function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
   const [path, setPath] = useState('');
   const [files, setFiles] = useState<FileInfo[]>([]);
   const [loading, setLoading] = useState(false);
@@ -38,14 +34,6 @@ export default function App() {
     }
   }
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-
-    //This line in React/TypeScript will call your Rust function.
-    invoke('my_custom_command');
-  }
-
   return (
     <main className="min-h-screen bg-zinc-900 text-zinc-100 p-6 font-sans">
       <div className="max-w-5xl mx-auto space-y-6">
@@ -68,5 +56,3 @@ export default function App() {
     </main>
   );
 }
-
-export default App;

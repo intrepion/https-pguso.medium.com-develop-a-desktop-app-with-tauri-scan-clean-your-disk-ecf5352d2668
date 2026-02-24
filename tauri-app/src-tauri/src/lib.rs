@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 use trash::delete;
-use walkdir::WalkDir;s
+use walkdir::WalkDir;
 
 #[derive(serde::Serialize)]
 struct FileInfo {
